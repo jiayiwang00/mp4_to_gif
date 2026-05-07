@@ -1,0 +1,1 @@
+Your GIF image will be saved here.
