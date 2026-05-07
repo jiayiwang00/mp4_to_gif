@@ -2,44 +2,40 @@ from pathlib import Path
 from moviepy import VideoFileClip
 
 
-# ====== 可以修改的参数 ======
-START = 0        # 从第几秒开始
-END = None          # 到第几秒结束；如果想转换完整视频，改成 None
-FPS = 10         # GIF 帧率，越低文件越小
-WIDTH = 480      # GIF 宽度，越小文件越小
+# ====== Editable parameters ======
+START = 0        # Start time in seconds
+END = None      # End time in seconds; use None to convert the full video
+FPS = 10        # GIF frame rate; lower FPS means smaller file size
+WIDTH = 480     # GIF width; smaller width means smaller file size
 OUTPUT_DIR = "gif"
-# ==========================
+# ================================
 
 
 def mp4_to_gif(input_file: Path, output_file: Path):
-    """
-    把单个 MP4 文件转换成 GIF
-    """
-
     clip = None
 
     try:
-        print(f"正在处理: {input_file.name}")
+        print(f"Processing: {input_file.name}")
 
         clip = VideoFileClip(str(input_file))
 
-        # 截取片段
+        # Trim video clip
         if END is not None:
             clip = clip.subclipped(START, END)
         else:
             clip = clip.subclipped(START)
 
-        # 调整大小
+        # Resize video
         clip = clip.resized(width=WIDTH)
 
-        # 输出 GIF
+        # Export as GIF
         clip.write_gif(str(output_file), fps=FPS)
 
-        print(f"完成: {output_file}")
+        print(f"Done: {output_file}")
 
     except Exception as e:
-        print(f"转换失败: {input_file.name}")
-        print(f"原因: {e}")
+        print(f"Failed to convert: {input_file.name}")
+        print(f"Reason: {e}")
 
     finally:
         if clip is not None:
@@ -50,10 +46,9 @@ def main():
     current_folder = Path(".")
     output_folder = current_folder / OUTPUT_DIR
 
-    # 如果 gif 文件夹不存在，就创建
     output_folder.mkdir(exist_ok=True)
 
-    # 找到当前文件夹下所有 mp4 / MP4 文件
+    # Find all mp4 / MP4 files in the current folder
     mp4_files = [
         file
         for file in current_folder.iterdir()
@@ -61,16 +56,16 @@ def main():
     ]
 
     if not mp4_files:
-        print("当前文件夹没有找到 .mp4 文件")
+        print("No .mp4 files found in the current folder")
         return
 
-    print(f"找到 {len(mp4_files)} 个 MP4 文件")
+    print(f"Found {len(mp4_files)} MP4 file(s)")
 
     for mp4_file in mp4_files:
         gif_file = output_folder / f"{mp4_file.stem}.gif"
         mp4_to_gif(mp4_file, gif_file)
 
-    print("全部转换完成")
+    print("All conversions completed")
 
 
 if __name__ == "__main__":
