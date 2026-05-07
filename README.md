@@ -47,7 +47,7 @@ pip install moviepy
 ## 4. Run the Script
 
 ```bash
-python convert_all_mp4_to_gif.py
+python mp4_to_gif.py
 ```
 
 Put your `.mp4` files in this folder, for example:
