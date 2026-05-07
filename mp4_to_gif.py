@@ -7,6 +7,7 @@ START = 0        # Start time in seconds
 END = None      # End time in seconds; use None to convert the full video
 FPS = 10        # GIF frame rate; lower FPS means smaller file size
 WIDTH = 480     # GIF width; smaller width means smaller file size
+INPUT_DIR = "mp4"
 OUTPUT_DIR = "gif"
 # ================================
 
@@ -44,22 +45,27 @@ def mp4_to_gif(input_file: Path, output_file: Path):
 
 def main():
     current_folder = Path(".")
+    input_folder = current_folder / INPUT_DIR
     output_folder = current_folder / OUTPUT_DIR
+
+    if not input_folder.is_dir():
+        print(f"Input folder not found: {input_folder}")
+        return
 
     output_folder.mkdir(exist_ok=True)
 
-    # Find all mp4 / MP4 files in the current folder
+    # Find all mp4 / MP4 files in the input folder
     mp4_files = [
         file
-        for file in current_folder.iterdir()
+        for file in input_folder.iterdir()
         if file.is_file() and file.suffix.lower() == ".mp4"
     ]
 
     if not mp4_files:
-        print("No .mp4 files found in the current folder")
+        print(f"No .mp4 files found in {input_folder}")
         return
 
-    print(f"Found {len(mp4_files)} MP4 file(s)")
+    print(f"Found {len(mp4_files)} MP4 file(s) in {input_folder}")
 
     for mp4_file in mp4_files:
         gif_file = output_folder / f"{mp4_file.stem}.gif"
