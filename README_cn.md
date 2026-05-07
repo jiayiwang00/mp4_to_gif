@@ -54,9 +54,13 @@ python mp4_to_gif.py
 
 ```text
 mp4_to_gif/
-├── video1.mp4
-├── video2.mp4
-└── demo.mp4
+├── README.md
+└── mp4/
+    ├── video1.mp4
+    └── video2.mp4
+└── gif/
+    ├── video1.gif
+    └── video2.gif
 ```
 
 ---
