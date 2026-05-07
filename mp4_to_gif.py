@@ -4,9 +4,9 @@ from moviepy import VideoFileClip
 
 # ====== Editable parameters ======
 START = 0        # Start time in seconds
-END = None      # End time in seconds; use None to convert the full video
-FPS = 10        # GIF frame rate; lower FPS means smaller file size
-WIDTH = 480     # GIF width; smaller width means smaller file size
+END = None          # End time in seconds; use None to convert the full video
+FPS = 3        # GIF frame rate; lower FPS means smaller file size
+WIDTH = 320     # GIF width; smaller width means smaller file size
 INPUT_DIR = "mp4"
 OUTPUT_DIR = "gif"
 # ================================
