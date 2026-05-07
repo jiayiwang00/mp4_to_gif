@@ -1,5 +1,6 @@
 # MP4 转 GIF 工具
 
+简体中文 | [English](./README.md)
 这个 Python 脚本可以把当前文件夹中的所有 `.mp4` 文件转换成 `.gif` 文件。
 
 转换后的 GIF 文件会保存到一个名为 `gif/` 的文件夹中。  

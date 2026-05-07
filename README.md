@@ -1,5 +1,7 @@
 # MP4 to GIF Converter
 
+English | [简体中文](./README_cn.md)
+
 This Python script converts all `.mp4` files in the current folder into `.gif` files.
 
 The converted GIF files will be saved into a folder named `gif/`.  
